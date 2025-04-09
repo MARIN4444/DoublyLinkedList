@@ -155,7 +155,3 @@ class DoublyLinkedList:
             current = current.prev
         return result
 
-
-
-test_dll = DoublyLinkedList()
-test_dll.append(1)  
