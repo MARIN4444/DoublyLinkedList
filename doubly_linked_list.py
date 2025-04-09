@@ -9,51 +9,62 @@ class DoublyLinkedList:
         self.head = None
         self.tail = None
         self.size = 0
-        self.isEmpty = True
+
+    
+    def isEmpty(self):
+        return self.size == 0
 
     def append(self, data):
         new_node = node(data)
         if not self.head:
             self.head = new_node
             self.tail = new_node
-            self.isEmpty = False
             self.size += 1
         else:
             self.tail.next = new_node
             new_node.prev = self.tail
             self.tail = new_node
             self.size += 1
-            self.isEmpty = False
+
 
     def prepend(self, data):
         new_node = node(data)
         if not self.head:
             self.head = new_node
             self.tail = new_node
-            self.isEmpty = False
             self.size += 1
         else:
             new_node.next = self.head
             self.head.prev = new_node
             self.head = new_node
             self.size += 1
-            self.isEmpty = False
+
     
-    def delete(self, key):
+    def delete(self, data):
+        if self.isEmpty():
+            return False
         current = self.head
-        while current:
-            if current.data == key:
-                if current.prev:
-                    current.prev.next = current.next
-                else:
-                    self.head = current.next
-                if current.next:
-                    current.next.prev = current.prev
-                else:
-                    self.tail = current.prev
-                self.size -= 1
-                return
+        if current.data == data:
+            self.head = current.next
+            if self.head:
+                self.head.prev = None
+            else:
+                self.tail = None
+            self.size -= 1
+            return True
+        while current and current.data != data:
             current = current.next
+        if not current:
+            return False
+        if current.next:
+            current.next.prev = current.prev  
+        else:
+            self.tail = current.prev
+        if current.prev:
+            current.prev.next = current.next
+        self.size -= 1  
+        return True
+
     
     def insertAt(self, index, data):
         if index == 0:
@@ -73,7 +84,7 @@ class DoublyLinkedList:
             self.tail = new_node
         current.next = new_node
         self.size += 1
-        self.isEmpty = False    
+
 
     def getAt(self, index):
         if index < 0:
@@ -113,11 +124,13 @@ class DoublyLinkedList:
 
     def find(self, data):
         current = self.head
+        index = 0
         while current:
             if current.data == data:
-                return current
+                return index
+            index += 1
             current = current.next
-        return None
+        return -1
     
     def sort(self):
         if self.head is None:
