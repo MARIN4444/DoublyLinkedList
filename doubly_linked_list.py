@@ -4,7 +4,7 @@ class node:
         self.next = None
         self.prev = None
 
-class doubly_linked_list:
+class DoublyLinkedList:
     def __init__(self):
         self.head = None
         self.tail = None
@@ -86,10 +86,7 @@ class doubly_linked_list:
         if current is None:
             raise IndexError("Index out of bounds")
         return current.data 
-    
-
-    def isEmpty(self):
-        return self.head is None   
+     
     
     def toList(self):
         result = []
@@ -150,13 +147,6 @@ class doubly_linked_list:
             current = current.prev
         return result
 
-    def size(self):
-        count = 0
-        current = self.head
-        while current:
-            count += 1
-            current = current.next
-        return count
 
 
 test_dll = DoublyLinkedList()
