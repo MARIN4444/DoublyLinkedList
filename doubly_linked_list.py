@@ -8,26 +8,36 @@ class doubly_linked_list:
     def __init__(self):
         self.head = None
         self.tail = None
+        self.size = 0
+        self.isEmpty = True
 
     def append(self, data):
         new_node = node(data)
         if not self.head:
             self.head = new_node
             self.tail = new_node
+            self.isEmpty = False
+            self.size += 1
         else:
             self.tail.next = new_node
             new_node.prev = self.tail
             self.tail = new_node
+            self.size += 1
+            self.isEmpty = False
 
     def prepend(self, data):
         new_node = node(data)
         if not self.head:
             self.head = new_node
             self.tail = new_node
+            self.isEmpty = False
+            self.size += 1
         else:
             new_node.next = self.head
             self.head.prev = new_node
             self.head = new_node
+            self.size += 1
+            self.isEmpty = False
     
     def delete(self, key):
         current = self.head
@@ -41,6 +51,7 @@ class doubly_linked_list:
                     current.next.prev = current.prev
                 else:
                     self.tail = current.prev
+                self.size -= 1
                 return
             current = current.next
     
@@ -61,14 +72,21 @@ class doubly_linked_list:
         else:
             self.tail = new_node
         current.next = new_node
+        self.size += 1
+        self.isEmpty = False    
 
     def getAt(self, index):
+        if index < 0:
+            raise IndexError("Index out of bounds")
         current = self.head
         for i in range(index):
             if current is None:
                 raise IndexError("Index out of bounds")
             current = current.next
-        return current.data if current else None
+        if current is None:
+            raise IndexError("Index out of bounds")
+        return current.data 
+    
 
     def isEmpty(self):
         return self.head is None   
@@ -140,4 +158,6 @@ class doubly_linked_list:
             current = current.next
         return count
 
-    
+
+test_dll = DoublyLinkedList()
+test_dll.append(1)  
