@@ -1,9 +1,4 @@
-class node:
-    def __init__(self, data):
-        self.data = data
-        self.next = None
-        self.prev = None
-
+From node import node
 class DoublyLinkedList:
     def __init__(self):
         self.head = None
