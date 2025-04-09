@@ -81,4 +81,37 @@ class doubly_linked_list:
             current = current.next
         return result
 
+    def reverse(self):
+        current = self.head
+        prev = None
+        while current:
+            prev = current.prev
+            current.prev = current.next
+            current.next = prev
+            current = current.prev
+        if prev:
+            self.head = prev.prev
+        if self.head:
+            self.tail = self.head
+            while self.tail.next:
+                self.tail = self.tail.next  
+
+    def find(self, data):
+        current = self.head
+        while current:
+            if current.data == data:
+                return current
+            current = current.next
+        return None
     
+    def sort(self):
+        if self.head is None:
+            return
+        current = self.head
+        while current:
+            index = current.next
+            while index:
+                if current.data > index.data:
+                    current.data, index.data = index.data, current.data
+                index = index.next
+            current = current.next
