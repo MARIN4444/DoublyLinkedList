@@ -334,25 +334,25 @@ class TestDoublyLinkedList(unittest.TestCase):
         self.assertEqual(self.dll.head.data, 1)
         self.assertEqual(self.dll.tail.data, 4)
     
-    def test_forward_traversal(self):
+    def test_forwardTraversal(self):
         """Test forward traversal"""
-        self.assertEqual(self.dll.forward_traversal(), [])
+        self.assertEqual(self.dll.forwardTraversal(), [])
         
         self.dll.append(1)
         self.dll.append(2)
         self.dll.append(3)
         
-        self.assertEqual(self.dll.forward_traversal(), [1, 2, 3])
+        self.assertEqual(self.dll.forwardTraversal(), [1, 2, 3])
     
-    def test_backward_traversal(self):
+    def test_backwardTraversal(self):
         """Test backward traversal"""
-        self.assertEqual(self.dll.backward_traversal(), [])
+        self.assertEqual(self.dll.backwardTraversal(), [])
         
         self.dll.append(1)
         self.dll.append(2)
         self.dll.append(3)
         
-        self.assertEqual(self.dll.backward_traversal(), [3, 2, 1])
+        self.assertEqual(self.dll.backwardTraversal(), [3, 2, 1])
 
 if __name__ == '__main__':
     unittest.main()
