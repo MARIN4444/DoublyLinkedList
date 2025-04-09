@@ -132,3 +132,12 @@ class doubly_linked_list:
             current = current.prev
         return result
 
+    def size(self):
+        count = 0
+        current = self.head
+        while current:
+            count += 1
+            current = current.next
+        return count
+
+    
